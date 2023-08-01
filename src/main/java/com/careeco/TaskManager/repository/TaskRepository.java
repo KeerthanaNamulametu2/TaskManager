@@ -1,0 +1,14 @@
+package com.careeco.TaskManager.repository;
+
+import com.careeco.TaskManager.model.Task;
+import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.mongodb.repository.Query;
+
+import java.util.List;
+
+public interface TaskRepository extends MongoRepository<Task, String> {
+    List<Task> findBySeverity(int severity);
+
+    @Query("{asignee:?0 }")
+    List<Task> getTaskByAsignee(String asignee);
+}
